@@ -3,12 +3,7 @@ open Core.Std
 let build_count () =
   In_channel.fold_lines stdin
     ~init:[]
-    ~f:(fun counts line ->
-        let count = match List.Assoc.find counts line with
-          | None -> 0
-          | Some x -> x
-        in
-        List.Assoc.add counts line (count + 1))
+    ~f:Counter.touch
 
 let () =
   build_count ()
